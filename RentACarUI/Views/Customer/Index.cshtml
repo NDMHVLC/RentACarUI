@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container-fluid pt-4 px-4">
+    <div class="col-md-12">
+        <h1 class="mt-4">Kullanıcılar</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/Home/Index">Admin Paneli</a></li>
+            <li class="breadcrumb-item active">Kullanıcılar</li>
+        </ol>
+    </div>
+    <div class="bg-secondary text-center rounded mt-4 p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Servis Tablosu</h6>
+            <a href="/Customer/Add" class="btn-sm">Yeni Kullanıcı Kaydı Ekle</a>
+        </div>
+
+        <div class="table-responsive" ng-app="customerapp" ng-controller="customerController">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" id="dtReservation">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Id</th>
+                        <th scope="col">TC No</th>
+                        <th scope="col">Ad</th>
+                        <th scope="col">Soyad</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Parola</th>
+                        <th scope="col">Telefon Numarası</th>
+                        <th scope="col">Adres</th>
+                        <th scope="col">Rezervasyon</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="customer in CustomerList">
+                        <td>{{customer.id}}</td>
+                        <td>{{customer.tcNo}}</td>
+                        <td>{{customer.name}}</td>
+                        <td>{{customer.surname}}</td>
+                        <td>{{customer.eMail}}</td>
+                        <td>{{customer.password}}</td>
+                        <td>{{customer.phoneNumber}}</td>
+                        <td>{{customer.address}}</td>
+                        <td>{{customer.reservationId}}</td>
+                        <td>
+                            <a href="/Customer/Update?Id={{customer.id}}" class="btn-sm ">Düzenle</a>
+                            <a ng-click="CustomerDelete(customer.id)" class="btn-sm ">Sil</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/pages/customer.js"></script>
+}

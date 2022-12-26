@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid pt-4 px-4">
+    <div class="col-md-12">
+        <h1 class="mt-4">Araba</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/Home/Index">Admin Paneli</a></li>
+            <li class="breadcrumb-item active">Araba</li>
+        </ol>
+    </div>
+    <div class="bg-secondary text-center rounded mt-4 p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Servis Tablosu</h6>
+            <a href="/Car/Add" class="btn-sm">Araba Kaydı Ekle</a>
+        </div>
+
+        <div class="table-responsive" ng-app="carapp" ng-controller="carController">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" id="dtCar">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Id</th>
+                        <th scope="col">Marka</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Yakıt Türü</th>
+                        <th scope="col">Km</th>
+                        <th scope="col">Servis</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="car in CarList">
+                        <td>{{car.id}}</td>
+                        <td>{{car.brand}}</td>
+                        <td>{{car.model}}</td>
+                        <td>{{car.fuelType}}</td>
+                        <td>{{car.km}}</td>
+                        <td>{{car.carService.comment}}</td>
+                        <td>
+                            <a href="/Car/Update?Id={{car.id}}" class="btn-sm ">Düzenle</a>
+                            <a ng-click="CarDelete(car.id)" class="btn-sm ">Sil</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/pages/car.js"></script>
+}

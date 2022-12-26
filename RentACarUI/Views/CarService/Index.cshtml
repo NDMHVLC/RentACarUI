@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container-fluid pt-4 px-4">
+    <div class="col-md-12">
+        <h1 class="mt-4">Servis</h1>
+            <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/Home/Index">Admin Paneli</a></li>
+                <li class="breadcrumb-item active">Servis</li>
+            </ol>        
+    </div>
+    <div class="bg-secondary text-center rounded mt-4 p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Servis Tablosu</h6>
+            <a href="/CarService/Add" class="btn-sm">Servis Kaydı Ekle</a>
+        </div>
+
+        <div class="table-responsive" ng-app="carserviseapp" ng-controller="carserviceController">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" id="dtCarService">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Id</th>
+                        <th scope="col">Giriş Tarihi</th>
+                        <th scope="col">Çıkış Tarihi</th>
+                        <th scope="col">Açıklama</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="carService in CarServiceList">
+                        <td>{{carService.id}}</td>
+                        <td>{{carService.entryDate}}</td>
+                        <td>{{carService.releaseDate}}</td>
+                        <td>{{carService.comment}}</td>
+                        <td>
+                            <a href="/CarService/Update?Id={{carService.id}}" class="btn-sm ">Düzenle</a>
+                            <a ng-click="CarServiceDelete(carService.id)" class="btn-sm ">Sil</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/pages/carService.js"></script>
+}

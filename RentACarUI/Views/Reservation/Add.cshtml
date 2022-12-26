@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="col-md-12">
+        <h1 class="mt-4">Yeni Rezervasyon Kaydı Ekle</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/Home/Index">Admin Paneli</a></li>
+            <li class="breadcrumb-item"><a href="/Reservation/Index">Rezervasyon</a></li>
+            <li class="breadcrumb-item active">Rezervasyon Kaydı Ekle</li>
+        </ol>
+    </div>
+    <div class="col-12">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-secondary rounded h-100 p-4" ng-app="reservationaddapp" ng-controller="reservationAddController">
+
+                    <div class="mb-3">
+                        <label class="form-label">Kiralama Tarihi</label>
+                        <input type="datetime-local" class="form-control" ng-model="reservation.rentalDate">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Teslim Tarihi</label>
+                        <input type="datetime-local" class="form-control" ng-model="reservation.deliveryDate">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Başlangıç Km</label>
+                        <input type="text" class="form-control" ng-model="reservation.startingKm">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Bitiş Km</label>
+                        <input type="text" class="form-control" ng-model="reservation.finishKm">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Açıklama</label>
+                        <input type="text" class="form-control" ng-model="reservation.comment">
+                    </div>
+                     <div class="mb-3">
+                    <label>Lütfen Bir Araba Seçiniz</label>
+                    <select class="form-control" ng-model="reservation.carId">
+                    <option ng-repeat="car in CarList" ng-value="{{car.id}}">{{car.model}}</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <a ng-click="ReservationAdd()" class="btn btn-primary">Kaydet</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/pages/reservationAdd.js"></script>
+}
